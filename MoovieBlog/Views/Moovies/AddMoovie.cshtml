@@ -1,0 +1,44 @@
+﻿@model MoovieBlog.ViewModels.AddMoovieViewModel
+<link rel="stylesheet" href="~/css/site.css"/>
+<h1 class="text-center text-danger">Moovie Add</h1>
+<form method="post" asp-action="addMoovie" asp-controller="Moovies" enctype="multipart/form-data">
+    <div class="container h-25 w-25 text-center">
+        <div>
+            <input type="hidden" id="" asp-for="MoovieId" value="@ViewData["PostId"]" />
+        </div>
+
+        <div>
+            <input asp-for="Title" autocomplete="off" type="text" placeholder="Title" maxlength="40" class="form-group" />
+        </div>
+
+        <div>
+            <textarea asp-for="Body" autocomplete="off" maxlength="2000" placeholder="Body" class="form-group h-25"></textarea>
+        </div>
+
+        <div>
+            <input asp-for="Director" autocomplete="off" placeholder="Moovie Director" type="text" maxlength="20" class="form-group" />
+        </div>
+
+        <div>
+            <input asp-for="Date" autocomplete="off" type="date" placeholder="Date" maxlength="4" class="form-group" />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input class="form-control cu-file-input" id="FilUploader" type="file" name="file" />
+            </div>
+        </div>
+
+        <div class="form-group" row>
+            <input placeholder="Full link for Video" asp-for="VideoLink" type="text"/>
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-primary" value="Add Moovie" />
+        </div>
+    </div>
+   
+</form>
+
+<script src="~/js/jquery.3.4.1.min.js"></script>
+<script src="~/js/site.js"></script>

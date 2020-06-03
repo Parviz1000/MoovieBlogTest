@@ -1,0 +1,56 @@
+﻿@model MoovieBlog.ViewModels.EditMoovieViewModel
+<h1 class="text-center text-danger">Moovie: @Model.Title</h1>
+<form asp-action="edit" asp-controller="Moovies" method="post" enctype="multipart/form-data">
+    <div class="container h-25 w-25 text-center bg-transparent">
+        <div>
+            <input type="hidden" id="" asp-for="@Model.MoovieId" />
+        </div>
+
+        <div>
+            <input asp-for="Title" autocomplete="off" type="text" placeholder="Title" maxlength="40" class="form-group" />
+        </div>
+
+        <div>
+            <textarea asp-for="Body" autocomplete="off" maxlength="2000" placeholder="Body" class="form-group h-25"></textarea>
+        </div>
+
+        <div>
+            <input asp-for="Director" autocomplete="off" placeholder="Moovie Director" type="text" maxlength="20" class="form-group" />
+        </div>
+
+        <div>
+            <input asp-for="Date" autocomplete="off" type="date" placeholder="Date" maxlength="4" class="form-group" />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input class="form-control cu-file-input" id="FilUploader" type="file" name="file" />
+            </div>
+        </div>
+
+        <div class="form-group" row>
+            <input placeholder="Full link for Video" asp-for="VideoLink" type="text" />
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-primary w-25" value="Edit" />
+        </div>
+    </div>
+
+</form>
+
+<script src="~/js/jquery.3.4.1.min.js"></script>
+<script src="~/js/site.js"></script>
+<script>
+    $("#checkbox").keyup(function () {
+        var name = $("#checkbox").val();
+        if (name.length > 0) {
+            $("#videolink").css("display", "none");
+
+        }
+        else {
+            $("#videolink").css("display", "block");
+        }
+    });
+
+</script>

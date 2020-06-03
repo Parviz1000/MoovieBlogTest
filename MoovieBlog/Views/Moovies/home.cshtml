@@ -1,0 +1,93 @@
+﻿@model MoovieBlog.ViewModels.MooviesViewModel
+@{
+    ViewData["Title"] = "Moovies";
+}
+<link href="~/css/site.css"/>
+<style>
+    @@font-face {
+        font-family: 'FontAwesome';
+        src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal
+    }
+
+    .glyphicon {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+    }
+
+    .glyphicon-chevron-right:before {
+        content: "\f054";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\f053";
+    }
+
+
+    img.smallscreen { display: none; }
+    
+
+
+</style>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <a asp-action="addMoovie" asp-controller="Moovies" class="text-white text-decoration-none btn btn-primary">Add Moovie</a>
+    </div>
+}
+<div class="container">
+
+        <div class="mx-auto text-center">
+            @foreach (var item in Model.Movies)
+            {
+
+            <div class="float-left ml-4 mt-3 h-75 zoom">
+                <div class="txt_size_ml">
+                    <a class="link_a" href="/Moovies/id/@item.MoovieId" style="text-decoration:none;">
+                        <h6 id="title" class="hp-um-description small">@item.Title</h6>
+                    </a>
+                </div>
+
+                @if (item.SelectedFile.Split(".").Last() == "png" || item.SelectedFile.Split(".").Last() == "jpg" || item.SelectedFile.Split(".").Last() == "jpeg")
+                {
+                        <a href="/Moovies/id/@item.MoovieId">
+                            <img id="FilUploader" src="~/Moovies/@item.SelectedFile" width="230" height="330" />
+                        </a>
+                }
+
+            </div>
+            }
+        </div>
+    </div>
+
+<div class="mt-4 w-auto text-center ">
+        @if (Model.PageViewModel.HasPreviousPage)
+        {
+            <a asp-action="home"
+               asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+               class="btn btn-outline-dark mt-4">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                Назад
+            </a>
+        }
+        @if (Model.PageViewModel.HasNextPage)
+        {
+            <a asp-action="home"
+               asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+               class="btn btn-outline-dark mt-4">
+                Вперед
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        }
+   
+</div>
+
+<script src="~/js/jquery.3.4.1.min.js"></script>
+<script>
+</script>

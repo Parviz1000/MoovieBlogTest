@@ -1,0 +1,24 @@
+﻿@model MoovieBlog.Models.Moovie
+<link href="~/css/id.css" rel="stylesheet">
+<div class="container ml-5">
+    <div class="row ml-5">
+        <div class="ml-5">
+            <h1 class="text-danger ml-5">@Model.Title</h1>
+            @if (Model.UserEmail.Equals(User.Identity.Name))
+            {
+                <a class="nav-link ml-5 text-decoration-none position-relative" href="/Moovies/edit/@Model.MoovieId">Edit Moovie</a>
+            }
+            <img src="~/Moovies/@Model.SelectedFile" alt="post img" class="pull-left img-responsive img-thumbnail margin10 ml-5 h-25 w-25 p-3 float-left">
+            <div class="text-right float-right mr-5">
+                <h6 class="">Director: <span class="text-danger h6"><a class="text-decoration-none">@Model.Director</a></span></h6>
+                <h6 class="">Release Date: <span class="text-danger h6"><a class="text-decoration-none">@Model.Date</a></span></h6>
+            </div>
+            <article class="text-justify flex-wrap w-50 ml-5">
+                @Model.Body
+            </article>
+            <video src="@Model.VideoLink" class="ml-5 mt-2" width="510" height="270" controls></video>
+            <hr />
+        </div>
+    </div>
+</div>
+<script src="~/js/jquery.3.4.1.min.js"></script>
